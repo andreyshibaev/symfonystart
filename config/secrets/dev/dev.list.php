@@ -1,0 +1,5 @@
+<?php
+
+return [
+    'mysecret' => null,
+];

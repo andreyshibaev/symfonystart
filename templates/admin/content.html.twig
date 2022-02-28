@@ -1,0 +1,23 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends ea.templatePath('layout') %}
+{% trans_default_domain ea.i18n.translationDomain %}
+
+{% block body_class 'page-content' %}
+
+{% block page_title %}
+    {% deprecated 'The "page_title" block is deprecated, use "content_title" instead.' %}
+{% endblock %}
+
+{% block content_title %}{{ block('page_title') }}{% endblock %}
+
+{% block page_content %}
+    {% deprecated 'The "page_content" block is deprecated, use "main" instead.' %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+<h3>Hello {{ app.user.email }}</h3>
+<h5>Welcome to my dashboard</h3>
+</div>
+{{ block('page_content') }}
+{% endblock %}
