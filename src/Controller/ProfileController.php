@@ -11,6 +11,10 @@ class ProfileController extends AbstractController
     #[Route('/profile', name: 'profile')]
     public function index(): Response
     {
+		if ($this->getUser() == Null) {
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('profile/index.html.twig', [
             'title' => 'Profile',
         ]);
