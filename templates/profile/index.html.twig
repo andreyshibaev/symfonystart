@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ title }} - {{ app.user.email}}
+{{ title }} - {{ app.user.username }}
 {% endblock %}
 
 {% block body %}
 <div class="container">
 {% for message in app.flashes('success') %}
-    <div class="alert alert-success">
+    <div class="alert alert-success mt-5">
         {{ message }}
     </div>
 {% endfor %}
-    <h1>Hello {{ app.user.email}}</h1>
+    <h1 class="py-3">Profile {{ app.user.username }} -
+    {% if is_granted('ROLE_ADMIN') %}
+   Administrator
+   {% else %}
+   no administrator privileges
+    {% endif %}
+    </h1>
+    <p class="mb-3">Email: {{ app.user.email }}</p>
 </div>
 {% endblock %}
