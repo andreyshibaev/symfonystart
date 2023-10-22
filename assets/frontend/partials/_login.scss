@@ -1,0 +1,47 @@
+#login_page{
+  padding: $page_container;
+  h1{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+.wrapper_form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  .block_form{
+    input{
+      box-shadow: inset 0 0 3px 1px #000;
+    }
+    background: #030b2a;
+    padding: 50px;
+    max-width: 500px;
+    width: 100%;
+    @include breakpoint($phonebp) {
+      padding: 20px;
+    }
+  }
+  .registerLoginText{
+    color:#fff;
+    margin-top: 30px;
+    text-transform: uppercase;
+    a{
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      border: 1px solid #feee3d;
+      padding: 10px;
+      margin-top: 10px;
+      text-align: center;
+      &:hover {
+        transition: all .5s;
+        background: #581b06;
+      }
+      &:active {
+        transition: all .5s;
+        border: 1px solid #37a2a4;
+      }
+    }
+  }
+}

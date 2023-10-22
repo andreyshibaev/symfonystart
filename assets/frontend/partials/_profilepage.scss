@@ -1,0 +1,31 @@
+#profilepage {
+  padding: $page_container;
+  margin: 100px 0;
+
+  h3 {
+    margin: 25px 0;
+  }
+
+  .btn_profile {
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #ffca67, #d78b29);
+    max-width: 300px;
+    margin: 20px 0;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    display: block;
+    &:hover {
+      transition: all .5s;
+      background: linear-gradient(180deg, #ffca67, #0a3622);
+      color: #fff;
+    }
+    &:active {
+      transition: all .5s;
+      background: #022a1c;
+      color: #d78b29;
+    }
+
+  }
+}

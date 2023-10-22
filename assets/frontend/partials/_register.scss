@@ -1,0 +1,29 @@
+#register_page {
+  padding: $page_container;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    color: #fff;
+  }
+
+  .btn_register_submit {
+    background:#203376;
+    color: #fff;
+
+    &:hover {
+      transition: all .5s;
+      background: #feee3d;
+      color: #000;
+    }
+
+    &:active {
+      transition: all .5s;
+      background: #e7ad98;
+      color: #000;
+    }
+  }
+}

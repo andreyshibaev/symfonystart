@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ title }} {{ app.user.email }}
+{% endblock %}
+
+{% block description %}
+    {{ description }} {{ app.user.email }}
+{% endblock %}
+
+{% block body %}
+    <section id="edit_profilepage">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-4">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('profilepage') }}">Профиль</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+            </ol>
+        </nav>
+        <h2>{{ title }} {{ app.user.email }}</h2>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {{ form(profileform) }}
+    </section>
+{% endblock body %}
