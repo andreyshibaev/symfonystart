@@ -26,13 +26,11 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface
         if (!$passport instanceof Passport) {
             throw new \Exception('Unexpected passport type');
         }
-
         $user = $passport->getUser();
         if (!$user instanceof User) {
             throw new \Exception('Unexpected user type');
         }
-
-        if (!$user->isVerified()) {
+        if (!$user->IsVerified()) {
             throw new AccountNotVerifiedAuthenticationException();
         }
     }
@@ -49,7 +47,7 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface
         $event->setResponse($response);
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             CheckPassportEvent::class => ['onCheckPassport', -10],
