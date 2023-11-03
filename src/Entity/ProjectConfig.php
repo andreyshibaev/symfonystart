@@ -126,7 +126,7 @@ class ProjectConfig
     {
         $this->imageFile = $imageFile;
 
-        if (null !== $imageFile) {
+        if ($imageFile instanceof \Symfony\Component\HttpFoundation\File\File) {
             $this->updated_at = new \DateTimeImmutable();
         }
     }

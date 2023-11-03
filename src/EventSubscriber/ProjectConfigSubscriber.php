@@ -10,8 +10,8 @@ use App\Repository\ProjectConfigRepository;
 class ProjectConfigSubscriber implements EventSubscriberInterface
 {
 
-    private $twig;
-    private $projectConfig;
+    private \Twig\Environment $twig;
+    private \App\Repository\ProjectConfigRepository $projectConfig;
 
     /**
      * @param $twig

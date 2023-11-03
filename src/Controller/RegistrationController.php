@@ -32,7 +32,7 @@ class RegistrationController extends AbstractController
         VerifyEmailHelperInterface  $verifyEmailHelper
     ): Response
     {
-        if ($this->getUser()) {
+        if ($this->getUser() instanceof \Symfony\Component\Security\Core\User\UserInterface) {
             return $this->redirectToRoute('homepage');
         }
 
@@ -89,7 +89,7 @@ class RegistrationController extends AbstractController
     public function verifyUserEmail(Request $request, VerifyEmailHelperInterface $verifyEmailHelper, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
         $user = $userRepository->find($request->query->get('id'));
-        if (!$user) {
+        if ($user === null) {
             throw $this->createNotFoundException();
         }
         try {

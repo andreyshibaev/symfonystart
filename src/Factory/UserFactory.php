@@ -31,6 +31,10 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 final class UserFactory extends ModelFactory
 {
     /**
+     * @var \Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface
+     */
+    public $userPasswordHasher;
+    /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
      * @todo inject services if required
