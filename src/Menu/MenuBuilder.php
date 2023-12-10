@@ -7,13 +7,8 @@ use Symfony\Bundle\SecurityBundle\Security as NewSecurityHelper;
 
 class MenuBuilder
 {
-    private \Knp\Menu\FactoryInterface $factory;
-    private NewSecurityHelper $security;
-
-    public function __construct(FactoryInterface $factory, NewSecurityHelper $security)
+    public function __construct(private readonly \Knp\Menu\FactoryInterface $factory, private readonly NewSecurityHelper $security)
     {
-        $this->factory = $factory;
-        $this->security = $security;
     }
 
     public function createMainMenu(array $options): ItemInterface
@@ -67,6 +62,7 @@ class MenuBuilder
                 ->setLinkAttribute('class', 'nav-link')
             ;
         }
+        
         return $menu;
     }
 }

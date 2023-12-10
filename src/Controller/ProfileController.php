@@ -37,6 +37,7 @@ class ProfileController extends AbstractController
             $this->addFlash('success', 'Ваши данные успешно обновлены!');
             return $this->redirectToRoute('profilepage');
         }
+
         return $this->render('profile/edit_profile.html.twig', [
             'title' => 'Редактировать профиль',
             'description' => 'Обновить профиль',
@@ -61,6 +62,7 @@ class ProfileController extends AbstractController
             $this->addFlash('success', 'Ваш пароль успешно изменён!');
             return $this->redirectToRoute('app_logout');
         }
+
         return $this->render('profile/change_password.html.twig', [
             'title' => 'Изменить пароль для ',
             'description' => 'Страница для изменения пароля',

@@ -109,6 +109,7 @@ class UserCrudController extends AbstractCrudController
             if (!$form->isValid()) {
                 return;
             }
+
             $password = $form->get('password')->getData();
             if ($password === null) {
                 return;

@@ -76,6 +76,7 @@ class RegistrationController extends AbstractController
             } catch (TransportExceptionInterface $exception) {
                 $exception->getDebug();
             }
+
             return $this->redirectToRoute('login_auth');
         }
 
@@ -92,16 +93,18 @@ class RegistrationController extends AbstractController
         if ($user === null) {
             throw $this->createNotFoundException();
         }
+
         try {
             $verifyEmailHelper->validateEmailConfirmation(
                 $request->getUri(),
                 $user->getId(),
                 $user->getEmail(),
             );
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('error', $exception->getReason());
+        } catch (VerifyEmailExceptionInterface $verifyEmailException) {
+            $this->addFlash('error', $verifyEmailException->getReason());
             return $this->redirectToRoute('register_profile');
         }
+
         $user->setIsVerified(true);
         $entityManager->flush();
         $this->addFlash('success', 'Ваш аккаунт подтверждён! Вы можете войти.');

@@ -13,23 +13,19 @@ use Symfony\Component\Security\Http\Event\LoginFailureEvent;
 
 class CheckVerifiedUserSubscriber implements EventSubscriberInterface
 {
-    private RouterInterface $router;
-
-    public function __construct(RouterInterface $router)
+    public function __construct(private readonly RouterInterface $router)
     {
-        $this->router = $router;
     }
 
     public function onCheckPassport(CheckPassportEvent $event)
     {
         $passport = $event->getPassport();
-        if (!$passport instanceof Passport) {
-            throw new \Exception('Unexpected passport type');
-        }
+
         $user = $passport->getUser();
         if (!$user instanceof User) {
             throw new \Exception('Unexpected user type');
         }
+
         if (!$user->IsVerified()) {
             throw new AccountNotVerifiedAuthenticationException();
         }

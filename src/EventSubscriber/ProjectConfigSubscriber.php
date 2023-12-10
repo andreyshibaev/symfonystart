@@ -10,17 +10,12 @@ use App\Repository\ProjectConfigRepository;
 class ProjectConfigSubscriber implements EventSubscriberInterface
 {
 
-    private \Twig\Environment $twig;
-    private \App\Repository\ProjectConfigRepository $projectConfig;
-
     /**
      * @param $twig
      * @param $projectConfig
      */
-    public function __construct(Environment $twig, ProjectConfigRepository $projectConfig)
+    public function __construct(private readonly \Twig\Environment $twig, private readonly \App\Repository\ProjectConfigRepository $projectConfig)
     {
-        $this->twig = $twig;
-        $this->projectConfig = $projectConfig;
     }
 
     public function onControllerEvent(ControllerEvent $event): void
