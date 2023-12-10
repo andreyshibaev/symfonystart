@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ProjectConfigRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
@@ -29,11 +30,11 @@ class ProjectConfig
 
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?DateTimeImmutable $created_at = null;
 
     #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column]
-    private ?\DateTimeImmutable $updated_at = null;
+    private ?DateTimeImmutable $updated_at = null;
 
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
@@ -71,13 +72,13 @@ class ProjectConfig
         $this->photo = $photo;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->created_at;
     }
 
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updated_at;
     }
@@ -127,7 +128,7 @@ class ProjectConfig
         $this->imageFile = $imageFile;
 
         if ($imageFile instanceof \Symfony\Component\HttpFoundation\File\File) {
-            $this->updated_at = new \DateTimeImmutable();
+            $this->updated_at = new DateTimeImmutable();
         }
     }
 
