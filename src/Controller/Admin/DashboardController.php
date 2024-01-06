@@ -4,12 +4,15 @@ namespace App\Controller\Admin;
 
 use App\Entity\ProjectConfig;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Security\Core\User\UserInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 
 #[IsGranted('ROLE_ADMIN')]
 class DashboardController extends AbstractDashboardController
@@ -33,13 +36,14 @@ class DashboardController extends AbstractDashboardController
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
-         return $this->render('bundles/EasyAdminBundle/page/content.html.twig');
+        return $this->render('bundles/EasyAdminBundle/page/content.html.twig');
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Symfonystart');
+            ->setTitle('Панель управления')
+            ->setFaviconPath('favicons/favicon-16x16.png');
     }
 
     public function configureMenuItems(): iterable
@@ -48,6 +52,24 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Панель управления', 'fa-solid fa-gauge');
         yield MenuItem::linkToCrud('Конфигурация', 'fa-solid fa-gear', ProjectConfig::class);
         yield MenuItem::linkToCrud('Пользователи', 'fa fa-user', User::class);
+        yield MenuItem::section('Выйти из аккаунта');
+        yield MenuItem::linkToLogout('Выход', 'fa fa-exit');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+    }
+
+    public function configureCrud(): Crud
+    {
+        return Crud::new()
+            ->showEntityActionsInlined()
+            ->setPaginatorPageSize(7)
+            ->setPaginatorRangeSize(1)
+            ->hideNullValues();
+    }
+
+    public function configureUserMenu(UserInterface $user): UserMenu
+    {
+        return parent::configureUserMenu($user)
+            ->setAvatarUrl('favicons/favicon-32x32.png')
+            ->setName($user->getUserIdentifier());
     }
 }
