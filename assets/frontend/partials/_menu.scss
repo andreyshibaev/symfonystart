@@ -1,0 +1,19 @@
+.navbar{
+background: #01181c;
+  a{
+    color: #f09d16;
+    font-size: 1.25rem;
+    &:hover{
+      transition: all 0.5s;
+      color: #ede20e;
+    }
+    &:active{
+      transition: all 0.5s;
+      color: #49a2a3;
+    }
+  }
+  .navbar-toggler {
+    color: #f09d16;
+    font-size: 3rem;
+  }
+}

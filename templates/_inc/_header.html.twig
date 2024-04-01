@@ -1,0 +1,25 @@
+<header>
+    {% if  projectConfig  %}
+        {% for item in projectConfig %}
+            <div class="logo">
+                <a href="{{ url('homepage') }}"><img src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="logo {{ item.title }}" width="50" height="90"></a>
+                <h1>{{ item.title }}</h1>
+            </div>
+            <div class="somecontent">
+                <p>{{ item.shorttext }}</p>
+            </div>
+            <div class="contacts">
+                <a href="tel:{{ item.phone }}">&#9743; {{ item.phone }}</a>
+                        <div class="social_icons">
+                            <a href="https://t.me/#">
+                                <img src="{{ asset('icons/telegram_icon.webp') }}" alt="icon_telegram" width="50">
+                            </a>
+                        </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center">
+            <h3 class="text-white">Контент не добавлен</h3>
+        </div>
+    {% endif %}
+</header>

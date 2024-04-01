@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <section id="login_page">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-4">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+            </ol>
+        </nav>
+        <h1>Войти в аккаунт</h1>
+        <div class="wrapper_form">
+            <div class="block_form">
+                <form method="post" class="login_form">
+                    <input type="email" class="form-control mb-3" name="email" placeholder="Ваша почта"/>
+                    <input type="password" class="form-control" name="password" placeholder="Ваш пароль"/>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}">
+
+
+                    {#            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality. #}
+                    {#            See https://symfony.com/doc/current/security/remember_me.html #}
+                    {#            <div class="checkbox mb-3"> #}
+                    {#                <label> #}
+                    {#                    <input type="checkbox" name="_remember_me"> Remember me #}
+                    {#                </label> #}
+                    {#            </div> #}
+
+                    <button class="btn btn-success mt-3">Войти</button>
+                </form>
+                <div class="registerLoginText">
+                    Нет аккаунта?
+                    <a href="{{ url('register_profile') }}" class="btn_login_register">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block description %}
+    {{ description }}
+{% endblock %}
+
+
+{% block body %}
+    <section id="register_page">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-4">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+            </ol>
+        </nav>
+        <h1>Регистрация</h1>
+        <div class="info_about_register alert alert-danger">
+            <h5>Внимание! До регистрации придумайте сложный пароль и сохраните его, например "Danis_Nort87$".
+                Больше 12 знаков, заглавные, строчные, цифры и символы.</h5>
+        </div>
+        <div class="wrapper_form">
+            <div class="block_form" data-turbo="false">
+                {{ form_errors(registrationForm) }}
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_end(registrationForm) }}
+                <div class="registerLoginText">
+                    Зарегистрированы?
+                    <a href="{{ url('login_auth') }}" class="btn_login_register">Войти</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

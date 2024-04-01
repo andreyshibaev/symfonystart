@@ -1,0 +1,11 @@
+<footer>
+    <section id="footer_section">
+        {% if projectConfig %}
+            {% for item in projectConfig %}
+                &#169; {{ item.title }}, {{ "now"|date("Y") }} г.
+            {% endfor %}
+        {% else %}
+            <h3>Контент не добавлен</h3>
+        {% endif %}
+    </section>
+</footer>

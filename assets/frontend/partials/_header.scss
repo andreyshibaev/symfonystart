@@ -1,0 +1,87 @@
+header {
+  background: $bgheader;
+  background: linear-gradient(to bottom, #032627, $bgheader);
+  padding: $page_container;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  @include breakpoint($desktopbp) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.logo {
+  justify-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  @include breakpoint($largebp) {
+    flex-direction: column;
+  }
+
+  h1 {
+    background-color: #17696b;
+    align-self: flex-end;
+    margin: 0;
+    background: linear-gradient(to left, #79e8ea, #feee3d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @include breakpoint($largebp) {
+      padding-left: 0;
+    }
+  }
+
+  img {
+    max-width: 50px;
+    height: auto;
+    margin-right: 15px;
+    @include breakpoint($largebp) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.somecontent {
+  justify-self: center;
+
+  a {
+    color: #feee3d;
+    text-decoration: none;
+    font-size: 1.25rem;
+
+    &:hover {
+      color: #ed7d55;
+      transition: all .5s;
+    }
+
+    &:active {
+      color: #0edcde;
+      transition: all .5s;
+    }
+  }
+
+  color: #feee3d;
+  font-size: 1.25rem;
+  @include breakpoint($phonebp) {
+    grid-column: 1 / 3;
+    justify-self: start;
+  }
+}
+
+.contacts {
+  a{
+    @include breakpoint($phonebp) {
+      font-size: 1rem;
+    }
+  }
+  justify-self: end;
+  @extend .somecontent;
+  @include breakpoint($desktopbp) {
+    justify-self: start;
+  }
+}
+
+.social_icons {
+  margin-top: 12px;
+}
+

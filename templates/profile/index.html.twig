@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ title }} {{ app.user.email }}
+{% endblock %}
+
+{#{% block description %}#}
+{#    {{ description }} {{ app.user.email }}#}
+{#{% endblock %}#}
+
+{% block body %}
+    <section id="profilepage">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-4">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+            </ol>
+        </nav>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% if app.user.username %}
+            <h1>Добро пожаловать {{ app.user.username }}</h1>
+            <hr class="line_bottom">
+        {% else %}
+            <h1>Добро пожаловать {{ app.user.email }}</h1>
+            <hr class="line_bottom">
+        {% endif %}
+
+        {% if app.user.verified %}
+            <p class="text-center alert alert-success">Ваш аккаунт подтверждён</p>
+        {% else %}
+            <p class="text-center alert alert-warning">Вы не подтвердили вашу почту</p>
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <h3 class="text-center alert alert-success">Администратор</h3>
+        {% else %}
+            <h3 class="text-center alert alert-danger">У вас нет административных прав</h3>
+        {% endif %}
+        <hr class="line_bottom">
+            <a href="{{ url('user_edit' ) }}" class="btn_profile">Редактировать профиль</a>
+            <a href="{{ url('change_password') }}" class="btn_profile">Изменить пароль</a>
+    </section>
+{% endblock body %}

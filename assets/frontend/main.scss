@@ -1,0 +1,22 @@
+@import 'partials/vars';
+@import 'partials/mixins';
+@import '~bootstrap/scss/bootstrap';
+@import 'partials/fonts';
+
+body {
+    background-color: $bodyBg;
+    font-family: 'Clear Sans', sans-serif;
+    .breadcrumb a {
+        color: #000;
+        text-decoration: none;
+    }
+}
+@import 'partials/menu';
+@import 'partials/header';
+@import 'partials/footer';
+@import 'partials/login';
+@import 'partials/profilepage';
+@import 'partials/register';
+@import 'partials/edit_profilepage';
+@import 'partials/change_password_page';
+@import 'partials/homepage';
