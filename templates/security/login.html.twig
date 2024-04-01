@@ -6,16 +6,6 @@
 
 {% block body %}
     <section id="login_page">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                <strong>{{ message }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
         {% if app.user %}
             <div class="mb-3">
                 You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
@@ -30,6 +20,15 @@
         <h1>Войти в аккаунт</h1>
         <div class="wrapper_form">
             <div class="block_form">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
                 <form method="post" class="login_form">
                     <input type="email" class="form-control mb-3" name="email" placeholder="Ваша почта"/>
                     <input type="password" class="form-control" name="password" placeholder="Ваш пароль"/>

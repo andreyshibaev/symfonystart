@@ -2,7 +2,11 @@
     {% if  projectConfig  %}
         {% for item in projectConfig %}
             <div class="logo">
-                <a href="{{ url('homepage') }}"><img src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="logo {{ item.title }}" width="50" height="90"></a>
+                <a href="{{ url('homepage') }}">
+                    <img src="{{ vich_uploader_asset(item, 'imageFile') }}"
+                         alt="logo {{ item.title }}"
+                         >
+                </a>
                 <h1>{{ item.title }}</h1>
             </div>
             <div class="somecontent">
