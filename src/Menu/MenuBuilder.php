@@ -8,7 +8,7 @@ use Symfony\Bundle\SecurityBundle\Security as NewSecurityHelper;
 
 class MenuBuilder
 {
-    public function __construct(private readonly \Knp\Menu\FactoryInterface $factory, private readonly NewSecurityHelper $security)
+    public function __construct(private readonly FactoryInterface $factory, private readonly NewSecurityHelper $security)
     {
     }
 
